@@ -16,9 +16,9 @@ class __TwigTemplate_436af1b079e892876a50112782aa11bb7a3f0d186379927542beda33465
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        echo "<div class=\"text-right\">
-    <a href=\"/user/logout\" class=\"\">Logout</a><br>
-    <a href=\"/user/profile\" class=\"\">Profile</a>    
+        echo "<div class=\"text-right\">    
+    <p><a href=\"/user/logout\" class=\"\">Logout</a></p>
+    <p><a href=\"/user/profile\" class=\"\">Profile</a></p>
 </div>";
     }
 

@@ -24,7 +24,7 @@ class __TwigTemplate_6f91fb7c62096bba860c4859adb2cb9df43cc990491b2f9aa830d732061
         // line 5
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["session"]) ? $context["session"] : null), "msg_log", array()), "html", null, true);
         echo " ";
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["session"]) ? $context["session"] : null), "msg_log", array()), "html", null, true);
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["session"]) ? $context["session"] : null), "msg_user", array()), "html", null, true);
         echo " ";
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["session"]) ? $context["session"] : null), "msg_pass", array()), "html", null, true);
         echo " ";

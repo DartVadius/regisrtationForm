@@ -27,8 +27,8 @@ class __TwigTemplate_e5f049125a6fb9eaad9d818659bd6fd661e31d1fabac606f46c35043ef3
         // line 5
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["session"]) ? $context["session"] : null), "user_email", array()), "html", null, true);
         echo "</p>
-            <form action=\"\" method=\"post\" class=\"login\">                
-                <input type=\"submit\" value=\"Update\" onclick=\"formWind()\" class=\"btn btn-primary\"/>                
+            <form action=\"/user/update\" method=\"post\" class=\"\">                
+                <input type=\"submit\" value=\"Update\" class=\"btn btn-primary\"/>                
             </form>            
         </div>
     </div>

@@ -33,30 +33,34 @@ class __TwigTemplate_8e61006c9d432760ae634aadf9684f493d255a63485d8936406961a5afc
         <div class=\"page-header\">
             <div class=\"row\">
                 <div class=\"col-lg-12\">
-                    ";
+                    <p>";
         // line 18
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["session"]) ? $context["session"] : null), "msg_conf", array()), "html", null, true);
+        echo "</p>
+                    ";
+        // line 19
         if ($this->getAttribute((isset($context["session"]) ? $context["session"] : null), "user_id", array())) {
-            // line 19
-            echo "                        ";
-            $this->loadTemplate("logged.tpl", "header.tpl", 19)->display($context);
             // line 20
+            echo "                        ";
+            $this->loadTemplate("logged.tpl", "header.tpl", 20)->display($context);
+            // line 21
             echo "                    ";
         } elseif (twig_test_empty((isset($context["register"]) ? $context["register"] : null))) {
-            // line 21
-            echo "                        ";
-            $this->loadTemplate("login.tpl", "header.tpl", 21)->display($context);
             // line 22
+            echo "                        ";
+            $this->loadTemplate("login.tpl", "header.tpl", 22)->display($context);
+            // line 23
             echo "                    ";
         }
-        // line 23
+        // line 24
         echo "                </div>
             </div>
             <div class=\"row\">
                 <div class=\"col-lg-12\">
                     ";
-        // line 27
-        $this->loadTemplate("menu.tpl", "header.tpl", 27)->display($context);
         // line 28
+        $this->loadTemplate("menu.tpl", "header.tpl", 28)->display($context);
+        // line 29
         echo "                </div>
             </div>
         </div>";
@@ -74,7 +78,7 @@ class __TwigTemplate_8e61006c9d432760ae634aadf9684f493d255a63485d8936406961a5afc
 
     public function getDebugInfo()
     {
-        return array (  60 => 28,  58 => 27,  52 => 23,  49 => 22,  46 => 21,  43 => 20,  40 => 19,  38 => 18,  19 => 1,);
+        return array (  64 => 29,  62 => 28,  56 => 24,  53 => 23,  50 => 22,  47 => 21,  44 => 20,  42 => 19,  38 => 18,  19 => 1,);
     }
 
     public function getSource()

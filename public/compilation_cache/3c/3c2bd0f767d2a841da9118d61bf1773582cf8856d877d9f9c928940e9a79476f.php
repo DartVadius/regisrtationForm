@@ -26,20 +26,26 @@ class __TwigTemplate_2df1070ee20082fc686af93775d0ea99b343e64784425a59fe4175af822
             echo "        
     ";
         } elseif (        // line 4
-array_key_exists("update", $context)) {
+array_key_exists("profile", $context)) {
             // line 5
             echo "        ";
             $this->loadTemplate("profile.tpl", "main.tpl", 5)->display($context);
             // line 6
             echo "    ";
-        } else {
+        } elseif (array_key_exists("update", $context)) {
             // line 7
             echo "        ";
-            $this->loadTemplate("content.tpl", "main.tpl", 7)->display($context);
+            $this->loadTemplate("update.tpl", "main.tpl", 7)->display($context);
             // line 8
             echo "    ";
+        } else {
+            // line 9
+            echo "        ";
+            $this->loadTemplate("content.tpl", "main.tpl", 9)->display($context);
+            // line 10
+            echo "    ";
         }
-        // line 9
+        // line 11
         echo "</div>
 ";
     }
@@ -56,7 +62,7 @@ array_key_exists("update", $context)) {
 
     public function getDebugInfo()
     {
-        return array (  43 => 9,  40 => 8,  37 => 7,  34 => 6,  31 => 5,  29 => 4,  24 => 3,  22 => 2,  19 => 1,);
+        return array (  49 => 11,  46 => 10,  43 => 9,  40 => 8,  37 => 7,  34 => 6,  31 => 5,  29 => 4,  24 => 3,  22 => 2,  19 => 1,);
     }
 
     public function getSource()

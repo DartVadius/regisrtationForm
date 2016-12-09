@@ -5,15 +5,20 @@
  *
  * @author DartVadius
  */
-class UserController {
+class UserController {    
+    public function indexAction() {
+        header("Location: /index");
+        exit();
+    }
+
     public function profileAction() {
         $param = array();
-        if (empty($_SESSION['user_id'])) {
-            header("Location: index");
+        if (empty($_SESSION['user_id']) || empty($_SESSION['user_login']) || empty($_SESSION['user_email'])) {
+            header("Location: /index");
             exit();
         }        
         $param = [
-            'update' => 1,
+            'profile' => 1,
             'session' => $_SESSION
             ];        
         $twig = TwigLib::twigRender();
@@ -28,7 +33,7 @@ class UserController {
             $rep = new UserRepository();
             $user = $rep->findByLogin($log);
             if (empty($user)) {
-                $_SESSION['msg_log'] = 'Ой вэй, юзверь не найден';                
+                $_SESSION['msg_log'] = 'Ой вэй, мы вас не знаем';                
             } else {
                 $hash = $user->getUserPass();
                 if (password_verify($pass, $hash)) {
@@ -39,10 +44,10 @@ class UserController {
                     $_SESSION['log'] = '';
                 }
                 else {
-                    $_SESSION['msg_log'] = 'Ой вэй, юзверь не найден';                
+                    $_SESSION['msg_log'] = 'Ой вэй, мы вас не знаем';                
                 }
             }            
-            header("Location: /index");
+            header("Location: /user/profile");
             exit();
         }
         $_SESSION['msg_log'] = 'Таки заполните все поля'; 
@@ -58,8 +63,7 @@ class UserController {
     }
 
     public function registerAction() {
-        $param = array();
-        $_SESSION['msg_pass'] = $_SESSION['msg_email'] = $_SESSION['msg_log'] = $_SESSION['msg_user'] = '';
+        $param = array();        
         if (!empty($_SESSION['user_id'])) {
             header("Location: /index");
             exit();
@@ -105,9 +109,18 @@ class UserController {
             $user->save();
             $user = $rep->findByLogin($log);
             $id = $user->getUserId();
-            $_SESSION['user_id'] = $id;
+            $_SESSION['user_id'] = $id;            
+            $activation = md5($id);
+            $subject = "Подтверждение регистрации";
+            $message = "Для активации аккаунта перейдите по ссылке:\n
+            http://www.testreg/user/activation/".$user->getUserLogin()."/".$activation;
+            mail($user->getUserEmail(), $subject, $message, "Content-type:text/plain; Charset=utf-8\r\n");
+            $_SESSION['user_id'] = $user->getUserId();
+            $_SESSION['user_login'] = $user->getUserLogin();
+            $_SESSION['user_email'] = $user->getUserEmail();            
             unset($_SESSION['reg_log']);
             unset($_SESSION['email']);
+            $_SESSION['msg_conf'] = 'На вашу почту было выслано сообщение для подтверждения регистрации';
             $_SESSION['msg_pass'] = $_SESSION['msg_email'] = $_SESSION['msg_log'] = $_SESSION['msg_user'] = '';
             header("Location: /index");
             exit();
@@ -115,4 +128,69 @@ class UserController {
         header("Location: /index");
         exit();
     }
+    public function updateAction() {
+        $param = [
+            'update' => 1,
+            'session' => $_SESSION
+            ];        
+        $twig = TwigLib::twigRender();
+        echo $twig->render('layout.tpl', $param);
+    }
+    public function activationAction($log = NULL, $activ = NULL) {
+        if ($log == NULL || $activ == NULL) {
+            header("Location: /index");
+            exit();
+        }
+        $log = SequreLib::clearReq($log);
+        $activ = SequreLib::clearReq($activ);
+        $rep = new UserRepository();
+        $user = $rep->findByLogin($log);
+        if (md5($user->getUserId()) == $activ) {
+            $user->setUserStatus('1');
+            $user->update();            
+            $_SESSION['msg_conf'] = 'Ваш аккаунт активирован';
+            header("Location: /index");
+            exit();
+        } else {
+            $_SESSION['msg_conf'] = 'Что-то пошло не так';
+            header("Location: /index");
+            exit();
+        }
+    }
+
+    public function saveUpdateAction() {
+        if (isset($_POST['pass']) && isset($_POST['conf']) && isset($_POST['email'])) {            
+            $pass = SequreLib::clearReq($_POST['pass']);
+            $passcheck = SequreLib::clearReq($_POST['conf']);
+            if ($pass != $passcheck) {
+                $_SESSION['msg_pass'] = 'Пароли не совпадают';                
+            }
+            $email = $_POST['email'];            
+            if (!SequreLib::emailValidate($email)) {
+                $_SESSION['msg_email'] = "Введите корректный email";                
+            }
+            $rep = new UserRepository();
+            $user = $rep->findByLogin($_SESSION['user_login']);
+            $user->setUserEmail($email);
+            $user->setUserPass($pass);
+            $valid = new UserValidate($user);
+            if (!$valid->validate()) {
+                $_SESSION['msg_log'] = "Проверьте корректность логина/пароля";                
+            }
+            if (!empty($_SESSION['msg_pass']) || 
+                !empty($_SESSION['msg_email']) || 
+                !empty($_SESSION['msg_log'])) {
+                header("Location: /user/update");
+                exit();
+            }
+            $user->updatePass();
+            $user->update();
+            $_SESSION['user_email'] = $user->getUserEmail();
+            header("Location: /user/profile");
+            exit();
+        } else {
+            header("Location: /user/update");
+            exit();
+        }
+    } 
 }

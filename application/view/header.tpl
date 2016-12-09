@@ -15,6 +15,7 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-lg-12">
+                    <p>{{session.msg_conf}}</p>
                     {% if session.user_id %}
                         {% include 'logged.tpl' %}
                     {% elseif register is empty %}

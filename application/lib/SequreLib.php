@@ -4,7 +4,7 @@ class SequreLib {
         $res = NULL;
         $res = trim($str);
         $res = addslashes($res);
-        $res = htmlspecialchars ($res);
+        $res = htmlspecialchars($res);
         return $res;
     }
     public static function emailValidate ($email) {

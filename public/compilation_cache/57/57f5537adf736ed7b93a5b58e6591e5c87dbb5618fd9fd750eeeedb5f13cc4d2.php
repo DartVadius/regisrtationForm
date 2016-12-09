@@ -17,7 +17,7 @@ class __TwigTemplate_691f3f46475ce3be26cdb3c943896d4a1797a8eb4891206a1518918c80e
     {
         // line 1
         echo "<div class=\"\">    
-    <form method=\"POST\" action=\"user/login\" class=\"login text-right\">                
+    <form method=\"POST\" action=\"/user/login\" class=\"login text-right\">                
         <div class=\"form-group field\">
             <p class=\"small\">";
         // line 4
@@ -30,7 +30,7 @@ class __TwigTemplate_691f3f46475ce3be26cdb3c943896d4a1797a8eb4891206a1518918c80e
         echo "\" required/><br>
             <label for=\"pass\">Password </label>
             <input type=\"password\" name=\"pass\" size=\"20\"/><br>
-            <a href=\"user/register\" class=\"\">Register</a>
+            <a href=\"/user/register\" class=\"\">Register</a>
             <input type=\"submit\" value=\"Login\" class=\"btn btn-primary\"/>                    
         </div>
     </form>        

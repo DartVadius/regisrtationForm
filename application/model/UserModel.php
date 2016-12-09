@@ -45,8 +45,16 @@ class UserModel extends BaseModel {
     public function setUserStatus($status) {
         $this->userStatus = $status;
     }
+    
+    public function setUserPass($pass) {
+        $this->userPass = $pass;
+    }
+    
+    public function setUserEmail($email) {
+        $this->userEmail = $email;
+    }
 
-        public function save() {
+    public function save() {
         $sql =  "INSERT INTO ". self::$tableName . " SET        
         user_login = :userLogin,
         user_password = :userPass,
@@ -69,16 +77,32 @@ class UserModel extends BaseModel {
     }
     
     public function update() {
-        $sql =  "UPDATE " . self::$tableName . "SET
-            user_email = :userEmail,
-            user_password = :userPass,
+        $sql =  "UPDATE " . self::$tableName . " SET
+            user_email = :userEmail,            
             user_status = :userStatus
             WHERE user_id = :userId";
-        $pass = password_hash($this->userPass, PASSWORD_DEFAULT);
+        
         $arr = array (
             'userEmail' => $this->userEmail,
+            'userStatus' => $this->userStatus,
+            'userId' => $this->userId
+        );
+        try {
+            $res = $this->pdo->prepare($sql);
+            $res->execute($arr);
+            return TRUE;
+        } catch (PDOException $ex) {
+            throw new Exception('Bad Request ', 400);
+        }
+    }
+    public function updatePass() {
+        $pass = password_hash($this->userPass, PASSWORD_DEFAULT);
+        $sql =  "UPDATE " . self::$tableName . " SET
+            user_password = :userPass
+            WHERE user_id = :userId";
+        
+        $arr = array (
             'userPass' => $pass,
-            'userGroup' => $this->userGroup,
             'userId' => $this->userId
         );
         try {
