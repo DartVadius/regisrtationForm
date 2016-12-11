@@ -1,12 +1,35 @@
-function formWind()
-{
-    var newWind = window.open("", "newwin", "width=500, height=500, top=100, left=100, status=no, location=no, toolbar=no, menubar=no");
-    newWind.document.write("<html><head>");
-    newWind.document.write("<title>Edit Profile</title>");
-    newWind.document.write("</head>");
-    newWind.document.write("<body>");
-    newWind.document.write("<form name=\"\" action=\"\" method=\"post\">");
-    newWind.document.write("<input type=\"text\" size=\"20\" name=\"\"><br>");
-    newWind.document.write("<input type=\"submit\" value=\"Send\" name=\"\">");
-    newWind.document.write("</body></html>");
+function getXmlHttpRequest(){
+    if (window.XMLHttpRequest) {
+        try {
+            return new XMLHttpRequest();
+        } catch (e) {
+
+        }
+    } else if (window.ActiveXObject) {
+        try {
+            return new ActiveXObject('Msxml12.XMLHTTP');
+        } catch (e) {
+
+        }
+        try {
+            return new ActiveXObject('Microsoft.XMLHTTP');
+        } catch (e) {
+
+        }
+    }
+    return null;
+}
+var req;
+function showReqest(url, id) {    
+    req = getXmlHttpRequest();
+    req.onreadystatechange = reqCompl(id);
+    req.open('GET', url, true);
+    req.send(null);
+}
+
+function reqCompl(id) {
+    if (req.readyState == 4) {
+        var result = document.getElementById(id);
+        result.firstChild.nodeValue = req.responseText;
+    }
 }
