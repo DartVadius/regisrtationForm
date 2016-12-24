@@ -32,7 +32,7 @@ class Application {
         define("PASSWORD", $this->db['password']);
         set_exception_handler(array(get_class($this), "getStaticException"));
     }
-    //зачем так сложно?????
+    
     public static function getStaticException($exception) {
         $exceptionHandlerClass = ucwords(Application::$App->exceptionController) . "Controller";
         $exceptionHandlerClass = new $exceptionHandlerClass();
@@ -91,9 +91,7 @@ class Application {
             $url = trim($_GET['url'], '/');
             $url = filter_var($url, FILTER_SANITIZE_URL);
             $url = explode('/', $url);
-            // Put URL parts into according properties
-            // By the way, the syntax here is just a short form of if/else, called "Ternary Operators"
-            // @see http://davidwalsh.name/php-shorthand-if-else-ternary-operators
+            // Put URL parts into according properties            
             $this->url_controller = isset($url[0]) ? ucwords($url[0]). 'Controller' : null;
             $this->url_action = isset($url[1]) ? $url[1] . 'Action' : null;
             // Remove controller and action from the split URL

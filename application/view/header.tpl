@@ -9,6 +9,9 @@
         <script src="/public/js/bootstrap.min.js" type="text/javascript"></script>
         <link rel="stylesheet" type="text/css" href="/public/css/style.css">
         <script src="/public/js/myJS.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+			  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+			  crossorigin="anonymous"></script>
     </head>
     <body>
     <div class="container">

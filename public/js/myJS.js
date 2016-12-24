@@ -1,35 +1,23 @@
-function getXmlHttpRequest(){
-    if (window.XMLHttpRequest) {
-        try {
-            return new XMLHttpRequest();
-        } catch (e) {
-
+$(document).ready(
+        function () {
+            $('#register').click(function () {
+                var data = {
+                    login: $('#login').val(),
+                    pass: $('#pass').val(),
+                    conf: $('#conf').val(),
+                    email: $('#email').val()
+                };
+                $.post("/user/save", JSON.stringify(data)).done(function (data) {
+                    if (data.length > 0) {
+                        var newData = JSON.parse(data);
+                        if (newData.msg !== '') {
+                            $('#response >').remove();
+                            $('#response').append($('<p>').text(newData.msg));
+                        }
+                    } else {
+                        window.location.href = 'http://testreg';
+                    }
+                });
+            });
         }
-    } else if (window.ActiveXObject) {
-        try {
-            return new ActiveXObject('Msxml12.XMLHTTP');
-        } catch (e) {
-
-        }
-        try {
-            return new ActiveXObject('Microsoft.XMLHTTP');
-        } catch (e) {
-
-        }
-    }
-    return null;
-}
-var req;
-function showReqest(url, id) {    
-    req = getXmlHttpRequest();
-    req.onreadystatechange = reqCompl(id);
-    req.open('GET', url, true);
-    req.send(null);
-}
-
-function reqCompl(id) {
-    if (req.readyState == 4) {
-        var result = document.getElementById(id);
-        result.firstChild.nodeValue = req.responseText;
-    }
-}
+);
