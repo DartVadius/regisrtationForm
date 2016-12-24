@@ -22,51 +22,54 @@ class __TwigTemplate_8e61006c9d432760ae634aadf9684f493d255a63485d8936406961a5afc
         <title>Test</title>
         <meta charset=\"UTF-8\">
         <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-        <script src=\"/public/js/jquery-3.1.1.min.js\" type=\"text/javascript\"></script>
-        <link rel=\"stylesheet\" href=\"/testreg/public/css/bootstrap.css\">
-        <script src=\"/public/js/bootstrap.min.js\" type=\"text/javascript\"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" crossorigin=\"anonymous\">
+        <!-- Optional theme -->
+        <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css\" integrity=\"sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp\" crossorigin=\"anonymous\">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\" integrity=\"sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa\" crossorigin=\"anonymous\"></script>
         <link rel=\"stylesheet\" type=\"text/css\" href=\"/public/css/style.css\">
         <script src=\"/public/js/myJS.js\" type=\"text/javascript\"></script>
         <script src=\"https://code.jquery.com/jquery-3.1.1.min.js\"
-\t\t\t  integrity=\"sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=\"
-\t\t\t  crossorigin=\"anonymous\"></script>
+                integrity=\"sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=\"
+        crossorigin=\"anonymous\"></script>
     </head>
     <body>
-    <div class=\"container\">
-        <div class=\"page-header\">
-            <div class=\"row\">
-                <div class=\"col-lg-12\">
-                    <p>";
-        // line 21
+        <div class=\"container\">
+            <div class=\"page-header\">
+                <div class=\"row\">
+                    <div class=\"col-lg-12\">
+                        <p>";
+        // line 24
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["session"]) ? $context["session"] : null), "msg_conf", array()), "html", null, true);
         echo "</p>
-                    ";
-        // line 22
+                        ";
+        // line 25
         if ($this->getAttribute((isset($context["session"]) ? $context["session"] : null), "user_id", array())) {
-            // line 23
-            echo "                        ";
-            $this->loadTemplate("logged.tpl", "header.tpl", 23)->display($context);
-            // line 24
-            echo "                    ";
-        } elseif (twig_test_empty((isset($context["register"]) ? $context["register"] : null))) {
-            // line 25
-            echo "                        ";
-            $this->loadTemplate("login.tpl", "header.tpl", 25)->display($context);
             // line 26
-            echo "                    ";
+            echo "                        ";
+            $this->loadTemplate("logged.tpl", "header.tpl", 26)->display($context);
+            // line 27
+            echo "                        ";
+        } elseif (twig_test_empty((isset($context["register"]) ? $context["register"] : null))) {
+            // line 28
+            echo "                        ";
+            $this->loadTemplate("login.tpl", "header.tpl", 28)->display($context);
+            // line 29
+            echo "                        ";
         }
-        // line 27
-        echo "                </div>
-            </div>
-            <div class=\"row\">
-                <div class=\"col-lg-12\">
-                    ";
-        // line 31
-        $this->loadTemplate("menu.tpl", "header.tpl", 31)->display($context);
-        // line 32
-        echo "                </div>
-            </div>
-        </div>";
+        // line 30
+        echo "                    </div>
+                </div>
+                <div class=\"row\">
+                    <div class=\"col-lg-12\">
+                        ";
+        // line 34
+        $this->loadTemplate("menu.tpl", "header.tpl", 34)->display($context);
+        // line 35
+        echo "                    </div>
+                </div>
+            </div>";
     }
 
     public function getTemplateName()
@@ -81,7 +84,7 @@ class __TwigTemplate_8e61006c9d432760ae634aadf9684f493d255a63485d8936406961a5afc
 
     public function getDebugInfo()
     {
-        return array (  67 => 32,  65 => 31,  59 => 27,  56 => 26,  53 => 25,  50 => 24,  47 => 23,  45 => 22,  41 => 21,  19 => 1,);
+        return array (  70 => 35,  68 => 34,  62 => 30,  59 => 29,  56 => 28,  53 => 27,  50 => 26,  48 => 25,  44 => 24,  19 => 1,);
     }
 
     public function getSource()
